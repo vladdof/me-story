@@ -9,6 +9,6 @@ export const authGuard = (to, from, next) => {
   } else if (!authRequired && token) {
     next({ name: ROUTES.HIDDEN.NAME });
   } else {
-    next();
+    next({ name: ROUTES.PUBLIC.NAME });
   }
 };
