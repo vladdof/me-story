@@ -9,19 +9,19 @@ const routes = [
     redirect: { name: ROUTES.PUBLIC.NAME },
   },
   {
-    path: ROUTES.HIDDEN.PATH,
-    name: ROUTES.HIDDEN.NAME,
+    path: ROUTES.BLOG.PATH,
+    name: ROUTES.BLOG.NAME,
     component: () => import(
-      /* webpackChunkName: "blog" */
-      '@/components/blog.vue'
+      /* webpackChunkName: "page-blog" */
+      '@/views/page-blog.vue'
     ),
   },
   {
     path: ROUTES.PUBLIC.PATH,
     name: ROUTES.PUBLIC.NAME,
     component: () => import(
-      /* webpackChunkName: "public" */
-      '@/components/public.vue'
+      /* webpackChunkName: "page-public" */
+      '@/views/page-public.vue'
     ),
   },
   {

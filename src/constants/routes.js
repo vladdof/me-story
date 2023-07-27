@@ -3,13 +3,13 @@ export const ROUTES = {
     PATH: '/',
     NAME: 'home',
   },
-  HIDDEN: {
-    PATH: '/hidden',
-    NAME: 'hidden',
-  },
-  PUBLIC: {
+  BLOG: {
     PATH: '/blog',
     NAME: 'blog',
+  },
+  PUBLIC: {
+    PATH: '/public',
+    NAME: 'public',
   },
   SIGN_UP: {
     PATH: '/sign-up',
