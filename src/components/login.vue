@@ -71,7 +71,7 @@ export default {
 
         localStorage.setItem('token', data.token);
 
-        this.$router.push({ name: ROUTES.HIDDEN.NAME });
+        this.$router.push({ name: ROUTES.BLOG.NAME });
       } catch (error) {
         this.errorMessage = error.response.data.message;
         console.error('Ошибка: ', error.message);

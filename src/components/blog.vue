@@ -12,7 +12,7 @@
     </video>
 
     <div class="github-link">
-      <a href="https://github.com/ваш-логин-github" target="_blank">Мой GitHub</a>
+      <a href="https://github.com/vladdof/me-story" target="_blank">GitHub</a>
     </div>
 
     <feedback-form />
