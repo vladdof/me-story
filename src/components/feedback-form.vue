@@ -27,7 +27,7 @@
           class="form__input"
           required
         />
-        <input
+        <text-field
           v-model="email"
           type="email"
           name="email"
@@ -48,9 +48,13 @@
 
 <script>
 import { http } from '@/lib/http-common';
+import TextField from './text-field.vue';
 
 export default {
   name: 'feedback-form',
+  components: {
+    TextField,
+  },
   data() {
     return {
       email: '',

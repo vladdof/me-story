@@ -11,7 +11,7 @@
       class="form"
       @submit.prevent="signUp"
     >
-      <input
+      <text-field
         v-model="username"
         type="text"
         name="username"
@@ -20,7 +20,7 @@
         class="form__input"
         required
       />
-      <input
+      <text-field
         v-model="email"
         type="email"
         name="email"
@@ -28,7 +28,7 @@
         class="form__input"
         required
       />
-      <input
+      <text-field
         v-model="password"
         type="password"
         name="password"
@@ -49,9 +49,13 @@
 <script>
 import { http } from '@/lib/http-common';
 import { ROUTES } from '@/constants';
+import TextField from './text-field.vue';
 
 export default {
   name: 'sign-up',
+  components: {
+    TextField,
+  },
   data() {
     return {
       username: '',
