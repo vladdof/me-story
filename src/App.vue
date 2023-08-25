@@ -1,6 +1,9 @@
 <template>
   <div class="root-page">
-    <the-header />
+    <the-header
+      :is-authorized="isAuthorized"
+      @logout="onLogout"
+    />
     <main class="content">
       <router-view />
     </main>
@@ -8,12 +11,28 @@
 </template>
 
 <script>
-import TheHeader from '@/components/header.vue';
+import { ROUTES } from '@/constants';
+import { RepositoryToken } from '@/lib/repository-token';
+import TheHeader from '@/components/the-header.vue';
 
 export default {
   name: 'App',
   components: {
     TheHeader,
+  },
+  data: () => ({
+    isAuthorized: false,
+  }),
+  created() {
+    this.$options.repo = new RepositoryToken();
+    this.isAuthorized = this.$options.repo.get();
+  },
+  methods: {
+    onLogout() {
+      this.isAuthorized = false;
+      this.$options.repo.remove();
+      this.$router.push({ name: ROUTES.PUBLIC.NAME });
+    },
   },
 };
 </script>

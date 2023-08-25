@@ -15,7 +15,10 @@
       </a>
       <nav class="menu">
         <ul class="menu__list">
-          <li>
+          <li
+            v-if="!isAuthorized"
+            class="menu__item"
+          >
             <router-link
               class="menu__link"
               :to="$options.loginRoute"
@@ -23,13 +26,28 @@
               Войти
             </router-link>
           </li>
-          <li class="menu__item">
+          <li
+            v-if="!isAuthorized"
+            class="menu__item"
+          >
             <router-link
               class="menu__link"
               :to="$options.signUpRoute"
             >
               Регистарция
             </router-link>
+          </li>
+          <li
+            v-if="isAuthorized"
+            class="menu__item"
+          >
+            <a
+              class="menu__link"
+              href
+              @click.prevent="$emit('logout')"
+            >
+              Выход
+            </a>
           </li>
         </ul>
       </nav>
@@ -44,6 +62,12 @@ export default {
   name: 'the-header',
   loginRoute: ROUTES.LOGIN.PATH,
   signUpRoute: ROUTES.SIGN_UP.PATH,
+  props: {
+    isAuthorized: {
+      type: Boolean,
+      default: false,
+    },
+  },
 };
 </script>
 
