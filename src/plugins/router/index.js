@@ -28,16 +28,16 @@ const routes = [
     path: ROUTES.SIGN_UP.PATH,
     name: ROUTES.SIGN_UP.NAME,
     component: () => import(
-      /* webpackChunkName: "sign-up" */
-      '@/components/sign-up.vue'
+      /* webpackChunkName: "page-sign-up" */
+      '@/views/page-sign-up.vue'
     ),
   },
   {
     path: ROUTES.LOGIN.PATH,
     name: ROUTES.LOGIN.NAME,
     component: () => import(
-      /* webpackChunkName: "login" */
-      '@/components/login.vue'
+      /* webpackChunkName: "page-login" */
+      '@/views/page-login.vue'
     ),
   },
   {
