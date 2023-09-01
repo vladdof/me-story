@@ -1,12 +1,9 @@
 <template>
   <div class="sign-in">
     <p class="sign-in__title">Добро пожаловать</p>
-    <p
-      v-if="errorMessage"
-      class="error"
-    >
+    <error-message>
       {{ errorMessage }}
-    </p>
+    </error-message>
     <form
       class="form"
       @submit.prevent="login"
@@ -15,7 +12,7 @@
         v-model="username"
         type="text"
         name="username"
-        placeholder="Username"
+        placeholder="Логин"
         autocomplete="off"
         class="form__input"
         required
@@ -24,16 +21,13 @@
         v-model="password"
         type="password"
         name="password"
-        placeholder="Password"
+        placeholder="Пароль"
         class="form__input"
         required
       />
-      <button
-        class="form__btn"
-        type="submit"
-      >
+      <the-button :is-loading="isLoading">
         Войти
-      </button>
+      </the-button>
     </form>
     <div class="sign-up">
       <router-link
@@ -51,23 +45,30 @@
 import { http } from '@/lib/http-common';
 import { ROUTES } from '@/constants';
 import TextField from './text-field.vue';
+import TheButton from './the-button.vue';
+import ErrorMessage from './error-message.vue';
 
 export default {
   name: 'login',
   components: {
     TextField,
+    TheButton,
+    ErrorMessage,
   },
   data() {
     return {
       username: '',
       password: '',
       errorMessage: '',
+      isLoading: false,
     };
   },
   signUpRoute: ROUTES.SIGN_UP.PATH,
   methods: {
     async login() {
       try {
+        this.isLoading = true;
+
         const { data } = await http.post('/login', {
           username: this.username,
           password: this.password,
@@ -79,6 +80,8 @@ export default {
       } catch (error) {
         this.errorMessage = error.response.data.message;
         console.error('Ошибка: ', error.message);
+      } finally {
+        this.isLoading = false;
       }
     },
   },
@@ -118,33 +121,11 @@ export default {
     border: 1px solid #56acf7;
   }
 
-  .form__btn {
-    width: 100%;
-    padding: 8px 10px;
-    font-size: 1rem;
-    color: #fff;
-    border-radius: 10px;
-    border: none;
-    background: #f85f44;
-    outline: none;
-    cursor: pointer;
-    transition: background .2s;
-  }
-
-  .form__btn:hover {
-    background: #ea472b;
-  }
-
   .sign-up {
     margin-top: 6px;
   }
 
   .link:hover {
     text-decoration: underline;
-  }
-  .error {
-    margin-bottom: 16px;
-    font-size: .85rem;
-    color: #990808
   }
 </style>
