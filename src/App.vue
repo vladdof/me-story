@@ -25,7 +25,7 @@ export default {
   }),
   created() {
     this.$options.repo = new RepositoryToken();
-    this.isAuthorized = this.$options.repo.get();
+    this.isAuthorized = this.$options.repo.get() === 'authorized';
   },
   methods: {
     onLogout() {

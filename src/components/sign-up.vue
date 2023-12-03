@@ -41,8 +41,9 @@
 </template>
 
 <script>
-import { http } from '@/lib/http-common';
 import { ROUTES } from '@/constants';
+import { apiAdapter } from '@/lib/api-adapter';
+
 import TextField from './text-field.vue';
 import TheButton from './the-button.vue';
 import ErrorMessage from './error-message.vue';
@@ -68,16 +69,15 @@ export default {
       try {
         this.isLoading = true;
 
-        await http.post('/sign-up', {
+        await apiAdapter.signUp({
           username: this.username,
           password: this.password,
           email: this.email,
         });
 
         this.$router.push({ name: ROUTES.LOGIN.NAME });
-      } catch (error) {
-        this.errorMessage = error.response.data.message;
-        console.error('Ошибка: ', error.message);
+      } catch ({ msg }) {
+        this.errorMessage = msg;
       } finally {
         this.isLoading = false;
       }
